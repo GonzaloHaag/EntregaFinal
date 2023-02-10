@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCartContext } from './CartContext'
 
-const ItemDetail = ({title,image,price,description}) => {
+const ItemDetail = ({id,title,price,image,description}) => {
 
     const [goToCart,setgGoToCart] = useState(false);
     const {addProduct} = useCartContext(); //Solo quiero la funcion addProduct del cartContext
@@ -13,7 +13,14 @@ const ItemDetail = ({title,image,price,description}) => {
     const onAdd = (cantidad) => {
        
         setgGoToCart(true);
-        addProduct(title,image,price,description,cantidad);
+       let item = {
+        id,
+        title,
+        image,
+        price,
+        description
+       }
+       addProduct(item,cantidad)
     }
   return (
     <div className='detail-container'>

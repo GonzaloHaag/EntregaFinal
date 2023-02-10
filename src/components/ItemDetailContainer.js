@@ -25,7 +25,10 @@ const ItemDetailContainer = () => {
 
         pedido
         .then((respuesta)=>{
-            const producto = respuesta.data()
+            const producto = {
+              id:respuesta.id,
+              ...respuesta.data()
+            }
             setProducto(producto)
         })
         .catch((error)=>{

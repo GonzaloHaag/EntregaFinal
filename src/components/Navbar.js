@@ -20,7 +20,7 @@ const Navbar = () => {
         <NavLink className="navbar__link" to="/categoria/Pantalones">Pantalones</NavLink>
         </li>
         <li>
-            <NavLink className="navbar__link" to="/carrito">
+            <NavLink className="navbar__link" to="/cart">
                 <CartWidget/>
             </NavLink>
 
