@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemList from './ItemList';
 import { useState,useEffect } from 'react';
-import { queryCollection,collection,getDoc,getDocs, query,where } from 'firebase/firestore';
+import {collection,getDocs, query,where } from 'firebase/firestore';
 import { db } from '../firebase';
 import swal from 'sweetalert';
 
