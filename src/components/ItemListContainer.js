@@ -1,9 +1,9 @@
 import React from 'react'
-import ItemCount from './ItemCount'
 import ItemList from './ItemList';
 import { useState,useEffect } from 'react';
 import { queryCollection,collection,getDoc,getDocs, query,where } from 'firebase/firestore';
 import { db } from '../firebase';
+import swal from 'sweetalert';
 
 
 import { useParams } from 'react-router-dom';
@@ -15,22 +15,27 @@ const ItemListContainer = () => {
     const {categoryId} = useParams();
 
     useEffect(()=>{
+
+      swal("Cargando Productos...")
    
-      const productosCollection = collection(db,"Productos");
-
-     if(categoryId) {
-      const queryFilter = query(productosCollection,where("Categoria","==",categoryId))
-      getDocs(queryFilter)
-      .then(res=>setProductos(res.docs.map(product=>({id:product.id,...product.data()}))))
-
-     }
-     else{
-      getDocs(productosCollection)
-      .then(res=>setProductos(res.docs.map(product=>({id:product.id,...product.data()}))))
-     }
-
+      
+      const productosCollection = categoryId ? query(collection(db, "Productos"), where("Categoria", "==", categoryId)):collection(db,"Productos");
+        const pedidoFirestore = getDocs(productosCollection);
+        pedidoFirestore
+        .then((respuesta)=>{
+             const productos = respuesta.docs.map(doc=>({...doc.data(),id:doc.id}))
+             setProductos(productos);
+             swal({
+              title:"Productos Cargados!",
+              icon:"success"
+             })
+        })
+        .catch((error)=>{
+          swal("Hubo un error,intente nuevamente" + error);
+        })
 
     },[categoryId])
+
 
    
  

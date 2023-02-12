@@ -5,6 +5,7 @@ import { collection } from 'firebase/firestore';
 import { db } from '../firebase';
 import { getDoc,doc } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
+import swal from 'sweetalert';
 
 
 
@@ -18,6 +19,7 @@ const ItemDetailContainer = () => {
 
 
     useEffect(()=>{
+        swal("Cargando producto...")
 
         const productosCollection = collection(db,"Productos");
         const referencia = doc(productosCollection,id);
@@ -28,15 +30,21 @@ const ItemDetailContainer = () => {
             const producto = {
               id:respuesta.id,
               ...respuesta.data()
+             
             }
-            setProducto(producto)
+            setProducto(producto);
+            swal({
+              title:"Producto cargado!",
+              icon:"success"
+            })
+           
         })
         .catch((error)=>{
-            console.log(error)
+            swal("Error,intente nuevamente" +  error)
         })
 
         
-    })
+    },[])
 
   return (
     <ItemDetail {...producto}/>

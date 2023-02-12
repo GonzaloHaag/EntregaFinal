@@ -8,7 +8,7 @@ const CartProvider = ({children}) => {
   
   const [carrito,setCarrito] = useState([]);
   const [totalProductos,setTotalProductos] = useState(0);
-console.log(carrito, 'carrito')
+
 
   const addProduct = (item,cantidad) => {
     if(IsInCart(item.id)) {
@@ -29,6 +29,13 @@ console.log(carrito, 'carrito')
   }
   const removeProduct = (id) => setCarrito(carrito.filter(producto=>producto.id!==id));
 
+  
+  const cartTotal = () => {
+    return carrito.reduce((acc,prod)=>acc+=prod.price*prod.cantidad,0)
+  }
+  const cartCantidad = () => {
+    return carrito.reduce((acc,prod)=>acc+=prod.cantidad,0)
+  }
 
   
 
@@ -38,7 +45,10 @@ console.log(carrito, 'carrito')
       clearCart,
       IsInCart,
       removeProduct,
-      addProduct
+      addProduct,
+      cartTotal,
+      cartCantidad,
+      carrito
 
     }}>
       {children}

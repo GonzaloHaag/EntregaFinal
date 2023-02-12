@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { useEffect } from 'react';
+
 
 const ItemCount = ({stock,onAdd}) => {
 
@@ -17,11 +17,13 @@ const ItemCount = ({stock,onAdd}) => {
 
     return(
     <div className='counter-container'>
+        <div className='contadores-container'>
         <button disabled={contador <= 1} onClick={decrease}>-</button>
         <span>{contador}</span>
-        <button disabled={contador >=stock} onClick={increase}>+</button>
+        <button  onClick={increase}>+</button> 
+        </div>
         <div>
-         <button disabled={stock <= 0} onClick={()=> onAdd(contador)}>Agregar al carrito</button>
+         <button className='addCart' disabled={stock <= 0} onClick={()=> onAdd(contador)}>Agregar al carrito</button>
         </div>
     </div>
   )

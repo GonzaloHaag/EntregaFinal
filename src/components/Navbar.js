@@ -7,17 +7,17 @@ const Navbar = () => {
     <div className='navBar-container'>
         <nav className='nav'>
             <div className='nav__brand'>
-                <NavLink className="nav__link" to="/">Mi Marca</NavLink>
+                <NavLink className="nav__link" to="/">NBA STORE</NavLink>
             </div>
             <ul>
         <li>
-        <NavLink className="navbar__link" to="/categoria/Remeras">Remeras</NavLink>
+        <NavLink className="navbar__link" to="/categories/Remeras">Remeras</NavLink>
         </li>
         <li>
-        <NavLink className="navbar__link" to="/categoria/Shorts">Shorts</NavLink>
+        <NavLink className="navbar__link" to="/categories/Shorts">Shorts</NavLink>
         </li>
         <li>
-        <NavLink className="navbar__link" to="/categoria/Pantalones">Pantalones</NavLink>
+        <NavLink className="navbar__link" to="/categories/Pantalones">Pantalones</NavLink>
         </li>
         <li>
             <NavLink className="navbar__link" to="/cart">
